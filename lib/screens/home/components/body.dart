@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/screens/details/details_screen.dart';
 import 'package:plant_app/screens/home/components/recomanded_card_widget.dart';
 import 'package:plant_app/screens/home/components/title_with_more_btn.dart';
 import 'feature_card_widget.dart';
@@ -9,7 +10,9 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
 
     return SingleChildScrollView(
       child: Column(
@@ -17,7 +20,7 @@ class Body extends StatelessWidget {
           HeaderWithSearchBox(size: size),
 
           TitleWithMoreButton(title: "Recomanded", press: () {}),
-          
+
           SizedBox(
             height: size.height * .4,
             child: ListView.builder(
@@ -25,15 +28,18 @@ class Body extends StatelessWidget {
               itemCount: 4,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-              return RecomandedCard(
-                image: "assets/images/image_1.png",
-                title: "Samantha",
-                country: "Russia",
-                price: 440,
-                press: () {},
-              );
-
-            },),
+                return RecomandedCard(
+                  image: "assets/images/image_1.png",
+                  title: "Samantha",
+                  country: "Russia",
+                  price: 440,
+                  press: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (context) => DetailsScreen(),),);
+                  },
+                );
+              },),
           ),
 
           TitleWithMoreButton(title: "Featured", press: () {}),
@@ -44,11 +50,11 @@ class Body extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 4,
               itemBuilder: (context, index) {
-                return FeatureCard(press: (){},image: "assets/images/bottom_img_1.png",);
+                return FeatureCard(
+                  press: () {}, image: "assets/images/bottom_img_1.png",);
               },
             ),
           ),
-
 
 
         ],
